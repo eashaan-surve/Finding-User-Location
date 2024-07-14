@@ -16,7 +16,7 @@
 		56CD7C2924B4DD2200300CCF /* Finding_User_LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CD7C2824B4DD2200300CCF /* Finding_User_LocationUITests.swift */; };
 		56CD7C3824B4DE7400300CCF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CD7C3724B4DE7400300CCF /* CoreLocation.framework */; };
 		7C57FC0C2C3DBAA200992F0E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7C57FC0B2C3DBAA200992F0E /* FirebaseFirestore */; };
-		7C57FC102C3DE35700992F0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57FC0F2C3DE35700992F0E /* GoogleService-Info.plist */; };
+		81E3F9F22C44868B002682F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81E3F9F12C44868B002682F1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,7 @@
 		56CD7C2824B4DD2200300CCF /* Finding_User_LocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finding_User_LocationUITests.swift; sourceTree = "<group>"; };
 		56CD7C2A24B4DD2200300CCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56CD7C3724B4DE7400300CCF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		7C57FC0F2C3DE35700992F0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		81E3F9F12C44868B002682F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Finding User Location/Finding User Location/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 				56CD7C0824B4DD2000300CCF /* AppDelegate.swift */,
 				56CD7C0A24B4DD2000300CCF /* ViewController.swift */,
 				56CD7C0C24B4DD2000300CCF /* Main.storyboard */,
-				7C57FC0F2C3DE35700992F0E /* GoogleService-Info.plist */,
+				81E3F9F12C44868B002682F1 /* GoogleService-Info.plist */,
 				56CD7C0F24B4DD2200300CCF /* Assets.xcassets */,
 				56CD7C1124B4DD2200300CCF /* LaunchScreen.storyboard */,
 				56CD7C1424B4DD2200300CCF /* Info.plist */,
@@ -253,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56CD7C1324B4DD2200300CCF /* LaunchScreen.storyboard in Resources */,
-				7C57FC102C3DE35700992F0E /* GoogleService-Info.plist in Resources */,
+				81E3F9F22C44868B002682F1 /* GoogleService-Info.plist in Resources */,
 				56CD7C1024B4DD2200300CCF /* Assets.xcassets in Resources */,
 				56CD7C0E24B4DD2000300CCF /* Main.storyboard in Resources */,
 			);
