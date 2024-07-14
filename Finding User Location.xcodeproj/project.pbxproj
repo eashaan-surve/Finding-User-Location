@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		56CD7C1324B4DD2200300CCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CD7C1124B4DD2200300CCF /* LaunchScreen.storyboard */; };
 		56CD7C1E24B4DD2200300CCF /* Finding_User_LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CD7C1D24B4DD2200300CCF /* Finding_User_LocationTests.swift */; };
 		56CD7C2924B4DD2200300CCF /* Finding_User_LocationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CD7C2824B4DD2200300CCF /* Finding_User_LocationUITests.swift */; };
+		56CD7C3824B4DE7400300CCF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CD7C3724B4DE7400300CCF /* CoreLocation.framework */; };
+		7C57FC0C2C3DBAA200992F0E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7C57FC0B2C3DBAA200992F0E /* FirebaseFirestore */; };
+		7C57FC102C3DE35700992F0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C57FC0F2C3DE35700992F0E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,8 @@
 		56CD7C2424B4DD2200300CCF /* Finding User LocationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Finding User LocationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CD7C2824B4DD2200300CCF /* Finding_User_LocationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finding_User_LocationUITests.swift; sourceTree = "<group>"; };
 		56CD7C2A24B4DD2200300CCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56CD7C3724B4DE7400300CCF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7C57FC0F2C3DE35700992F0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CD7C3824B4DE7400300CCF /* CoreLocation.framework in Frameworks */,
+				7C57FC0C2C3DBAA200992F0E /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,7 @@
 				56CD7C1C24B4DD2200300CCF /* Finding User LocationTests */,
 				56CD7C2724B4DD2200300CCF /* Finding User LocationUITests */,
 				56CD7C0624B4DD2000300CCF /* Products */,
+				56CD7C3624B4DE7400300CCF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +108,7 @@
 				56CD7C0824B4DD2000300CCF /* AppDelegate.swift */,
 				56CD7C0A24B4DD2000300CCF /* ViewController.swift */,
 				56CD7C0C24B4DD2000300CCF /* Main.storyboard */,
+				7C57FC0F2C3DE35700992F0E /* GoogleService-Info.plist */,
 				56CD7C0F24B4DD2200300CCF /* Assets.xcassets */,
 				56CD7C1124B4DD2200300CCF /* LaunchScreen.storyboard */,
 				56CD7C1424B4DD2200300CCF /* Info.plist */,
@@ -125,6 +134,14 @@
 			path = "Finding User LocationUITests";
 			sourceTree = "<group>";
 		};
+		56CD7C3624B4DE7400300CCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56CD7C3724B4DE7400300CCF /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,6 +158,9 @@
 			dependencies = (
 			);
 			name = "Finding User Location";
+			packageProductDependencies = (
+				7C57FC0B2C3DBAA200992F0E /* FirebaseFirestore */,
+			);
 			productName = "Finding User Location";
 			productReference = 56CD7C0524B4DD2000300CCF /* Finding User Location.app */;
 			productType = "com.apple.product-type.application";
@@ -213,6 +233,9 @@
 				Base,
 			);
 			mainGroup = 56CD7BFC24B4DD2000300CCF;
+			packageReferences = (
+				7C57FC0A2C3DBAA200992F0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 56CD7C0624B4DD2000300CCF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -230,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56CD7C1324B4DD2200300CCF /* LaunchScreen.storyboard in Resources */,
+				7C57FC102C3DE35700992F0E /* GoogleService-Info.plist in Resources */,
 				56CD7C1024B4DD2200300CCF /* Assets.xcassets in Resources */,
 				56CD7C0E24B4DD2000300CCF /* Main.storyboard in Resources */,
 			);
@@ -580,6 +604,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7C57FC0A2C3DBAA200992F0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.29.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7C57FC0B2C3DBAA200992F0E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C57FC0A2C3DBAA200992F0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 56CD7BFD24B4DD2000300CCF /* Project object */;
 }
