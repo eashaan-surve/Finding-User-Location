@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBfsyEn46k_nsPRTx4JRA9v0Oxzdux6EFo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>197343362333</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.chiraagkrish.RoamIntern1</string>
+	<key>PROJECT_ID</key>
+	<string>roamuploadprofilepic</string>
+	<key>STORAGE_BUCKET</key>
+	<string>roamuploadprofilepic.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:197343362333:ios:62128280bce923ae9d35f4</string>
+</dict>
+</plist>
