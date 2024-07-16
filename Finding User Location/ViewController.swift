@@ -31,6 +31,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocationCoordinate2D?
+    var currentDriverLocation: CLLocationCoordinate2D?
     var writeTimer: Timer?
     var readTimer: Timer?
     var isOperationActive = true
@@ -53,9 +54,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let longitude = userLocation.coordinate.longitude
         let latDelta: CLLocationDegrees = 0.05
         let lonDelta: CLLocationDegrees = 0.05
+        self.currentUserLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let region: MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        let region: MKCoordinateRegion = MKCoordinateRegion(center: self.currentUserLocation!, span: span)
         
         DispatchQueue.main.async {
             self.map.showsUserLocation = true
@@ -89,6 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             Task {
                 await startReadOperation(db: db)
             }
+            
         }
         
         func startWriteOperation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, db: Firestore) async {
@@ -127,15 +129,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 if let data = document.data(),
                    let latitude = data["latitude"] as? Double,
                    let longitude = data["longitude"] as? Double {
-                    let location2 = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    await MainActor.run {
+                        self.currentDriverLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    }
                     
                     await MainActor.run {
-                        self.addAnnotationAtLocation(location: location2)
+                        self.addAnnotationAtLocation(location: self.currentDriverLocation!)
                         self.updateMapRegionToShowAllAnnotations()
+                        calculateDrivingDistance(from: self.currentUserLocation!, to: self.currentDriverLocation!) { distance, time in
+                                if let distance = distance, let time = time {
+                                    let distanceInMiles = distance / 1609.344 // Convert meters to miles
+                                    let timeInMinutes = time / 60 // Convert seconds to minutes
+                                    
+                                    print("Driving distance: \(String(format: "%.2f", distanceInMiles)) miles")
+                                    print("Estimated travel time: \(String(format: "%.0f", timeInMinutes)) minutes")
+                                } else {
+                                    print("Unable to calculate distance or time")
+                                }
+                            }
                     }
                     
                     if let currentLocation = await MainActor.run(body: { self.currentUserLocation }) {
-                        let distance = await MainActor.run { self.distanceBetween(coord1: currentLocation, coord2: location2) }
+                        let distance = await MainActor.run { self.distanceBetween(coord1: currentLocation, coord2: self.currentDriverLocation!) }
                         if distance < 0.05 {
                             await MainActor.run {
                                 self.isOperationActive = false
@@ -170,6 +185,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             annotations.append(map.userLocation)
         }
         map.showAnnotations(annotations, animated: true)
+    }
+    
+    func calculateDrivingDistance(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D, completion: @escaping (CLLocationDistance?, TimeInterval?) -> Void) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+        request.transportType = .automobile
+
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            guard let route = response?.routes.first else {
+                print("Error calculating route: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil, nil)
+                return
+            }
+            
+            let distanceInMeters = route.distance
+            let travelTimeInSeconds = route.expectedTravelTime
+            completion(distanceInMeters, travelTimeInSeconds)
+        }
     }
         
 }
