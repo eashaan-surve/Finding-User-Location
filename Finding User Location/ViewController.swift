@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import FirebaseCore
 import FirebaseFirestore
+import SwiftUI
 
 
 
@@ -172,4 +173,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         map.showAnnotations(annotations, animated: true)
     }
         
+    @IBOutlet weak var Time: UIImageView!
 }
+
