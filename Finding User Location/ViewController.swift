@@ -139,10 +139,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         self.updateMapRegionToShowAllAnnotations()
                         calculateDrivingDistance(from: self.currentUserLocation!, to: self.currentDriverLocation!) { distance, time in
                                 if let distance = distance, let time = time {
-                                    let distanceInMiles = distance / 1609.344 // Convert meters to miles
+                                    let distanceInMiles = (Measurement(value: distance, unit: UnitLength.meters))
+                                        .converted(to: UnitLength.miles) // Convert meters to miles
                                     let timeInMinutes = time / 60 // Convert seconds to minutes
                                     
-                                    print("Driving distance: \(String(format: "%.2f", distanceInMiles)) miles")
+                                    print("Driving distance: \(String(format: "%.2f", distanceInMiles.value)) miles")
                                     print("Estimated travel time: \(String(format: "%.0f", timeInMinutes)) minutes")
                                 } else {
                                     print("Unable to calculate distance or time")
@@ -185,8 +186,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if map.userLocation.location != nil {
             annotations.append(map.userLocation)
         }
-        map.showAnnotations(annotations, animated: true)
+        
+        guard !annotations.isEmpty else { return }
+        
+        var zoomRect = MKMapRect.null
+        for annotation in annotations {
+            let annotationPoint = MKMapPoint(annotation.coordinate)
+            let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
+            zoomRect = zoomRect.union(pointRect)
+        }
+        
+        // Padding around the edges (30% on each side)
+        let paddedRect = zoomRect.insetBy(dx: -zoomRect.size.width * 0.35,
+                                          dy: -zoomRect.size.height * 0.35)
+        
+        map.setVisibleMapRect(paddedRect, animated: true)
     }
+    
     
     func calculateDrivingDistance(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D, completion: @escaping (CLLocationDistance?, TimeInterval?) -> Void) {
         let request = MKDirections.Request()
