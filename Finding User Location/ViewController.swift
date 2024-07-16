@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import FirebaseCore
 import FirebaseFirestore
+import SwiftUI
 
 
 
@@ -207,4 +208,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
         
+    @IBOutlet weak var Time: UIImageView!
 }
+
